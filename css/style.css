@@ -1,0 +1,21 @@
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+}
+
+.grid {
+    display: grid;
+    max-width: 405px;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    margin-top: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #000000;
+}
+
+.grid > * {
+    width: 100%;
+    line-height: 0;
+    border: 0.5px solid #000000;
+}
