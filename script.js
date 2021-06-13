@@ -1,9 +1,9 @@
 const gameboard = (() => {
-    let ArrGameboard = ['X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'O' ]
+    let arrGameboard = ['X', 'O', 'X','O', 'O', 'X','X', 'O', 'O']
 
     let addToGameboard = (value) => {
-        ArrGameboard.push(value)
-        console.log(ArrGameboard)
+        arrGameboard.push(value)
+        console.log(arrGameboard)
     }
 
     const grid = document.querySelector('.grid')
@@ -13,6 +13,8 @@ const gameboard = (() => {
         grid.style.setProperty('--grid-cols', columns);
         for (let i = 0; i < (rows * columns); i++) {
             let gridDiv = document.createElement('div');
+            gridDiv.className = 'gridDiv';
+            gridDiv.value = i
             gridDiv.style.height = `${(400) / rows}px`;
             gridDiv.style.width = `${(400) / columns}px`;
             grid.appendChild(gridDiv);
@@ -20,6 +22,17 @@ const gameboard = (() => {
     }
 
     makeGrid(3, 3)
+
+    const divs = document.querySelectorAll('.gridDiv');
+   
+    divs.forEach((div) => {
+        div.addEventListener('click', addSign)
+    })
+
+    function addSign () {
+        this.textContent = arrGameboard[this.value] /*might need to change value inside[] to 
+        last array item*/
+    }
 
     return {
         addToGameboard
