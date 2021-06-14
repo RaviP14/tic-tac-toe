@@ -1,11 +1,13 @@
 const gameboard = (() => {
-    let arrGameboard = ['X', 'O', 'X','O', 'O', 'X','X', 'O', 'O']
+    let arrGameboard = []
 
     let addToGameboard = (value) => {
-        arrGameboard.push(value)
-        console.log(arrGameboard)
+        if (arrGameboard.length < 9 && arrGameboard[arrGameboard.length - 1] !== value) {
+            arrGameboard.push(value)
+            console.log(arrGameboard)
+        }
     }
-
+    
     const grid = document.querySelector('.grid')
 
     let makeGrid = (rows, columns) => {
@@ -24,15 +26,28 @@ const gameboard = (() => {
     makeGrid(3, 3)
 
     const divs = document.querySelectorAll('.gridDiv');
-   
+    function addPlayerToArray() {
+        if (arrGameboard.length === 0) {
+            playGame.player1.playerPoint()
+        } else if (arrGameboard[arrGameboard.length - 1] === 'O') {
+            playGame.player1.playerPoint()
+        } else if (arrGameboard[arrGameboard.length - 1] === 'X') {
+            playGame.player2.playerPoint()
+        }
+    }
+
+    function addSign() {
+        if (this.textContent === '') {
+            addPlayerToArray()
+            this.textContent = arrGameboard[arrGameboard.length - 1] //this.value
+        }
+    }
+
+
+
     divs.forEach((div) => {
         div.addEventListener('click', addSign)
     })
-
-    function addSign () {
-        this.textContent = arrGameboard[this.value] /*might need to change value inside[] to 
-        last array item*/
-    }
 
     return {
         addToGameboard
@@ -55,7 +70,7 @@ const Player = (name, sign) => {
 }
 
 const playGame = (() => {
-    const player1 = Player('player1', 'x');
+    const player1 = Player('player1', 'X');
     const player2 = Player('player2', 'O');
 
     return {
