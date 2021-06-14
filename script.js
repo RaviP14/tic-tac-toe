@@ -16,6 +16,7 @@ const gameboard = (() => {
         for (let i = 0; i < (rows * columns); i++) {
             let gridDiv = document.createElement('div');
             gridDiv.className = 'gridDiv';
+            gridDiv.id = 'div' + i;
             gridDiv.value = i
             gridDiv.style.height = `${(400) / rows}px`;
             gridDiv.style.width = `${(400) / columns}px`;
@@ -26,6 +27,7 @@ const gameboard = (() => {
     makeGrid(3, 3)
 
     const divs = document.querySelectorAll('.gridDiv');
+
     function addPlayerToArray() {
         if (arrGameboard.length === 0) {
             playGame.player1.playerPoint()
@@ -40,6 +42,7 @@ const gameboard = (() => {
         if (this.textContent === '') {
             addPlayerToArray()
             this.textContent = arrGameboard[arrGameboard.length - 1] //this.value
+            playGame.winner()
         }
     }
 
@@ -73,8 +76,41 @@ const playGame = (() => {
     const player1 = Player('player1', 'X');
     const player2 = Player('player2', 'O');
 
+   let div0 = document.querySelector('#div0')
+   let div1 = document.querySelector('#div1')
+   let div2 = document.querySelector('#div2')
+   let div3 = document.querySelector('#div3')
+   let div4 = document.querySelector('#div4')
+   let div5 = document.querySelector('#div5')
+   let div6 = document.querySelector('#div6')
+   let div7 = document.querySelector('#div7')
+   let div8 = document.querySelector('#div8')
+
+   let winner = () => {
+        if (div0.textContent === 'X' && div3.textContent === 'X' && div6.textContent === 'X' ||
+        div1.textContent === 'X' && div4.textContent === 'X' && div7.textContent === 'X' ||
+        div2.textContent === 'X' && div5.textContent === 'X' && div8.textContent === 'X' ||
+        div0.textContent === 'X' && div1.textContent === 'X' && div2.textContent === 'X' ||
+        div3.textContent === 'X' && div4.textContent === 'X' && div5.textContent === 'X' ||
+        div6.textContent === 'X' && div7.textContent === 'X' && div8.textContent === 'X' ||
+        div0.textContent === 'X' && div4.textContent === 'X' && div8.textContent === 'X' ||
+        div2.textContent === 'X' && div4.textContent === 'X' && div6.textContent === 'X') {
+            console.log('X Wins')
+        } else if (div0.textContent === 'O' && div3.textContent === 'O' && div6.textContent === 'O' ||
+        div1.textContent === 'O' && div4.textContent === 'O' && div7.textContent === 'O' ||
+        div2.textContent === 'O' && div5.textContent === 'O' && div8.textContent === 'O' ||
+        div0.textContent === 'O' && div1.textContent === 'O' && div2.textContent === 'O' ||
+        div3.textContent === 'O' && div4.textContent === 'O' && div5.textContent === 'O' ||
+        div6.textContent === 'O' && div7.textContent === 'O' && div8.textContent === 'O' ||
+        div0.textContent === 'O' && div4.textContent === 'O' && div8.textContent === 'O' ||
+        div2.textContent === 'O' && div4.textContent === 'O' && div6.textContent === 'O') {
+            console.log('O Wins')
+        }
+    }
+
     return {
         player1,
-        player2
+        player2,
+        winner
     }
 })();
