@@ -27,29 +27,31 @@ const gameboard = (() => {
     makeGrid(3, 3)
 
     const divs = document.querySelectorAll('.gridDiv');
+    let display = document.querySelector('.display');
 
     function addPlayerToArray() {
         if (arrGameboard.length === 0) {
             playGame.player1.playerPoint()
+            display.textContent = 'O\'s turn'
         } else if (arrGameboard[arrGameboard.length - 1] === 'O') {
             playGame.player1.playerPoint()
+            display.textContent = 'O\'s turn'
         } else if (arrGameboard[arrGameboard.length - 1] === 'X') {
             playGame.player2.playerPoint()
+            display.textContent = 'X\'s turn'
         }
     }
 
     function addSign() {
-        if (this.textContent === '') {
+        if (this.textContent === '' && (display.textContent === 'X\'s turn' || display.textContent === 'O\'s turn')) {
             addPlayerToArray()
             this.textContent = arrGameboard[arrGameboard.length - 1] //this.value
             playGame.winner()
         }
     }
 
-
-
     divs.forEach((div) => {
-        div.addEventListener('click', addSign)
+    div.addEventListener('click', addSign)
     })
 
     return {
@@ -87,6 +89,7 @@ const playGame = (() => {
    let div8 = document.querySelector('#div8')
 
    let winner = () => {
+        let display = document.querySelector('.display')
         if (div0.textContent === 'X' && div3.textContent === 'X' && div6.textContent === 'X' ||
         div1.textContent === 'X' && div4.textContent === 'X' && div7.textContent === 'X' ||
         div2.textContent === 'X' && div5.textContent === 'X' && div8.textContent === 'X' ||
@@ -95,7 +98,7 @@ const playGame = (() => {
         div6.textContent === 'X' && div7.textContent === 'X' && div8.textContent === 'X' ||
         div0.textContent === 'X' && div4.textContent === 'X' && div8.textContent === 'X' ||
         div2.textContent === 'X' && div4.textContent === 'X' && div6.textContent === 'X') {
-            console.log('X Wins')
+            display.textContent = 'X Wins'
         } else if (div0.textContent === 'O' && div3.textContent === 'O' && div6.textContent === 'O' ||
         div1.textContent === 'O' && div4.textContent === 'O' && div7.textContent === 'O' ||
         div2.textContent === 'O' && div5.textContent === 'O' && div8.textContent === 'O' ||
@@ -104,7 +107,11 @@ const playGame = (() => {
         div6.textContent === 'O' && div7.textContent === 'O' && div8.textContent === 'O' ||
         div0.textContent === 'O' && div4.textContent === 'O' && div8.textContent === 'O' ||
         div2.textContent === 'O' && div4.textContent === 'O' && div6.textContent === 'O') {
-            console.log('O Wins')
+            display.textContent = 'O Wins'
+        } else if (div0.textContent !== '' && div1.textContent !== '' && div2.textContent !== '' 
+        && div3.textContent !== '' && div4.textContent !== '' && div5.textContent !== '' &&
+        div6.textContent !== '' && div7.textContent !== '' && div8.textContent !== '') {
+            display.textContent = 'It\'s a tie'
         }
     }
 
