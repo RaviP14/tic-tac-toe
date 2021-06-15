@@ -9,7 +9,7 @@ const gameboard = (() => {
     }
     
     const grid = document.querySelector('.grid')
-
+    grid.style.display = 'none'
     let makeGrid = (rows, columns) => {
         grid.style.setProperty('--grid-rows', rows);
         grid.style.setProperty('--grid-cols', columns);
@@ -23,8 +23,16 @@ const gameboard = (() => {
             grid.appendChild(gridDiv);
         }
     }
-
     makeGrid(3, 3)
+
+    const startGame = document.querySelector('.startGame');
+
+    startGame.addEventListener('click', () => {
+        playGame.player1.setMyNickname();
+        playGame.player2.setMyNickname();
+        grid.style.display = 'grid'
+        startGame.style.display = 'none'
+    })
 
     const divs = document.querySelectorAll('.gridDiv');
     let display = document.querySelector('.display');
@@ -66,11 +74,20 @@ const Player = (name, sign) => {
     let playerPoint = () => {
         gameboard.addToGameboard(getSign())
     }
-    
+
+    let setMyNickname = () => {
+        let myNickname = prompt( name +'\'s Name?, ')
+        console.log(myNickname)
+    }
+
+    const getNickname = () => myNickname
+
     return {
         getName,
         getSign,
-        playerPoint
+        playerPoint,
+        setMyNickname,
+        getNickname
     }
 }
 
