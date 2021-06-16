@@ -4,7 +4,6 @@ const gameboard = (() => {
     let addToGameboard = (value) => {
         if (arrGameboard.length < 9 && arrGameboard[arrGameboard.length - 1] !== value) {
             arrGameboard.push(value)
-            console.log(arrGameboard)
         }
     }
     
@@ -27,17 +26,19 @@ const gameboard = (() => {
 
     const startGame = document.querySelector('.startGame');
     const resetGame = document.querySelector('.reset');
+    const newGame = document.querySelector('.newGame')
     resetGame.style.display = 'none'
+    newGame.style.display = 'none'
 
     startGame.addEventListener('click', () => {
         playGame.player1.setMyNickname();
         nickName1 = playGame.player1.getNickname()
         playGame.player2.setMyNickname();
-        //let display = document.querySelector('.display')
         display.textContent = nickName1 + '\'s (X\'s) turn'
         grid.style.display = 'grid'
         startGame.style.display = 'none'
-        resetGame.style.display = 'block' //change when styling css
+        resetGame.style.display = 'block'
+        newGame.style.display = 'block'
     })
 
     resetGame.addEventListener('click', () => {
@@ -48,7 +49,17 @@ const gameboard = (() => {
         })
     })
     
-
+    newGame.addEventListener('click', () => {
+        divs.forEach((div) => {
+            div.textContent = ''
+            arrGameboard = []
+            
+        })
+        playGame.player1.setMyNickname();
+        nickName1 = playGame.player1.getNickname()
+        playGame.player2.setMyNickname();
+        display.textContent = nickName1 + '\'s (X\'s) turn'
+    })
 
     const divs = document.querySelectorAll('.gridDiv');
     let display = document.querySelector('.display');
@@ -93,7 +104,6 @@ const Player = (name, sign) => {
 
     let setMyNickname = () => {
         myNickname = prompt( name +'\'s ' + '(' + sign + ')' + ' Name?, ')
-        console.log(myNickname)
         
     }
 
