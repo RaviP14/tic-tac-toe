@@ -13,6 +13,7 @@ h1 {
     text-align: center;
 }
 .buttonDiv {
+    display: flex;
     margin-top: 2rem;
     text-align: center;
 }
@@ -24,6 +25,8 @@ h1 {
   background-color: #0077b6;
   color: #ffffff;
   font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .startGame:hover {
@@ -40,7 +43,7 @@ h1 {
     max-width: 405px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    margin-top: 10rem;
+    margin-top: 6rem;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #000000;
@@ -67,7 +70,7 @@ h1 {
 
 .reset {
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 1rem;
     border: none;
     padding: 1rem;
     border-radius: 5px 5px 5px 5px;
@@ -77,5 +80,22 @@ h1 {
 }
 
 .reset:hover {
+    background-color: #023e8a;
+}
+
+.newGame {
+    margin-left: 1rem;
+    margin-right: auto;
+    border: none;
+    padding: 1rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #0077b6;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.newGame:hover {
     background-color: #023e8a;
 }
