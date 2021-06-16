@@ -17,4 +17,4 @@ The **live preview** of this project is available <a href = "https://ravip14.git
 - The **winner or a tie** is announced on the **display**.
 - Game will **stop** after winner is announced.
 - All code resides within a a **factory function or module (module pattern)**.
-- Improved **HTML** `id` and ``class` **naming** to acheive fewer lines of code. 
+- Improved **HTML** `id` and `class` **naming** to acheive fewer lines of code. 
